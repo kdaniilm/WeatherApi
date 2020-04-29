@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace WcfService2
 {
@@ -12,7 +13,18 @@ namespace WcfService2
     // NOTE: In order to launch WCF Test Client for testing this service, please select Service1.svc or Service1.svc.cs at the Solution Explorer and start debugging.
     public class Service1 : IService1
     {
-
+        #region Test async
+        public async Task<string> TestFuncAsync()
+        {
+            return await Task<string>.Run(() => TestFunc());
+        }
+        #endregion
+        #region Test
+        public string TestFunc()
+        {
+            return "Its work!";
+        }
+        #endregion
         #region Stock code
         public string GetData(int value)
         {

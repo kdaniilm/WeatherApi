@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace WcfService2
 {
@@ -12,7 +13,14 @@ namespace WcfService2
     [ServiceContract]
     public interface IService1
     {
-
+        #region Test code async
+        [OperationContract]
+        Task<string> TestFuncAsync();
+        #endregion
+        #region Test code
+        string TestFunc();
+        #endregion
+        #region Stock code
         [OperationContract]
         string GetData(int value);
 
@@ -20,6 +28,7 @@ namespace WcfService2
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
         // TODO: Add your service operations here
+        #endregion
     }
 
 
